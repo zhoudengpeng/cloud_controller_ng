@@ -45,6 +45,7 @@ module VCAP::CloudController
         best_dea_ad = EligibleDeaAdvertisementFilter.new(@dea_advertisements).
                        only_with_disk(criteria[:disk] || 0).
                        only_meets_needs(criteria[:mem], criteria[:stack]).
+                       only_in_the_zone_with_fewest_instances(criteria[:app_id], @dea_advertisements).
                        only_fewest_instances_of_app(criteria[:app_id]).
                        upper_half_by_memory.
                        sample

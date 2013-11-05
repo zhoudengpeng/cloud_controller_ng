@@ -12,4 +12,14 @@ class DeaAdvertisement < Advertisement
   def num_instances_of(app_id)
     stats["app_id_to_count"].fetch(app_id, 0)
   end
+
+
+  # return the zone info that this DEA belongs to
+  def zone
+    if stats["placement_properties"] && stats["placement_properties"]["zone"]
+      stats["placement_properties"]["zone"]
+    else
+      "default"
+    end
+  end
 end
